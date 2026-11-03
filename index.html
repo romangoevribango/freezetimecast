@@ -147,7 +147,17 @@ th { font: 600 14px/1.3 var(--body); color: var(--muted); }
 td:first-child { font: 600 20px/1.2 var(--display); white-space: nowrap; padding-left: 0; }
 td.price { font: 700 16px/1.3 var(--mono); white-space: nowrap; }
 tr.trial td:first-child, tr.trial td.price { color: var(--teal); }
-@media (max-width: 860px) { .plans-grid { grid-template-columns: 1fr; } .plans th:nth-child(2), .plans td:nth-child(2) { display: none; } .req td, .req th { padding-right: 8px; } }
+.plans-grid .first { color: var(--text, #e6ebee); border-left: 2px solid var(--teal); padding-left: 14px; }
+.plans-grid .first b { color: var(--teal); font-weight: 600; }
+tr.addon td { border-top: 1px dashed var(--line); }
+tr.addon td:first-child em { display: block; font: 400 13px/1.4 var(--body); color: var(--muted); font-style: normal; margin-top: 4px; }
+tr.addon td span { font-family: var(--mono); font-size: 14px; color: var(--teal); white-space: nowrap; }
+@media (max-width: 860px) { .plans-grid { grid-template-columns: 1fr; }
+  .plans thead { display: none; }
+  .plans tr { display: grid; grid-template-columns: 1fr auto; column-gap: 16px; border-bottom: 1px solid var(--line); padding: 16px 0; }
+  .plans td { border: 0 !important; padding: 0; }
+  .plans td:nth-child(2) { grid-column: 1 / -1; grid-row: 2; margin-top: 8px; font-size: 15px; color: #c9d1d5; }
+  .plans td.price { text-align: right; } .req td, .req th { padding-right: 8px; } }
 
 /* ---------- Questions ---------- */
 .faq { padding: clamp(60px, 8vw, 110px) 0; background: var(--panel); border-top: 1px solid var(--line); }
@@ -287,15 +297,16 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: 
       <div class="plans-grid">
         <div>
           <h2>Тарифы</h2>
-          <p>Подписка помесячно, отменить можно в любой момент. Программа только выходит, поэтому первые клубы получают особые условия — напишите.</p>
+          <p>Подписка помесячно, отменить можно в любой момент. За год сразу — на 20% дешевле.</p>
+          <p class="first"><b>Первым клубам</b> — три месяца за полцены, если разрешите показать ваш эфир на этом сайте и расскажете, что мешало.</p>
         </div>
         <table>
           <thead><tr><th></th><th>Что входит</th><th>Цена</th></tr></thead>
           <tbody>
             <tr class="trial"><td>Пробный</td><td>Все возможности на 14 дней. После — водяной знак на эфире, программа продолжает работать.</td><td class="price">0 ₽</td></tr>
-            <tr><td>Клуб</td><td>Один компьютер для трансляций, все обновления, поддержка в Telegram.</td><td class="price">от 2 000 ₽<small>в месяц</small></td></tr>
-            <tr><td>Организатор</td><td>Несколько компьютеров или клубов, помощь на турнире.</td><td class="price">от 5 000 ₽<small>в месяц</small></td></tr>
-            <tr><td>HUD под бренд</td><td>HUD, перерыв и переходы в цветах и логотипах вашего клуба.</td><td class="price">от 15 000 ₽<small>разово</small></td></tr>
+            <tr><td>Клуб</td><td>Один компьютер, всё без ограничений: автокамера без лимита часов, повторы, статистика, сцены OBS. Свои цвета, расположение блоков и спонсор в редакторе. Обновления и поддержка в Telegram.</td><td class="price">2 490 ₽<small>в месяц</small></td></tr>
+            <tr><td>Организатор</td><td>Всё из «Клуба» на трёх компьютерах. Поддержка в первую очередь, перед турниром удалённо проверим и настроим эфир вместе с вами.</td><td class="price">5 990 ₽<small>в месяц</small></td></tr>
+            <tr class="addon"><td>HUD под бренд<em>к любой подписке</em></td><td>Своё оформление вашего клуба вместо стандартного. <span>15 000 ₽</span> — готовый HUD в ваших цветах и с логотипами. <span>до 40 000 ₽</span> — свой дизайн HUD, экрана перерыва и переходов. Две правки входят, оформление обновляется вместе с программой.</td><td class="price">15–40 тыс. ₽<small>разово</small></td></tr>
           </tbody>
         </table>
       </div>
