@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Freezetime Cast — трансляции турниров по CS2</title>
-<meta name="description" content="Программа для трансляций турниров по CS2: HUD, автокамера, повторы, статистика и сцены OBS. Один человек в клубе ведёт эфир уровня большого турнира. 14 дней бесплатно.">
+<meta name="description" content="Программа для трансляций турниров по CS2: HUD, автокамера, повторы, статистика и сцены OBS. Один человек в клубе ведёт эфир уровня большого турнира. 3 дня эфира бесплатно.">
 <meta name="theme-color" content="#14181b">
 <link rel="icon" href="img/icon.png">
 <meta property="og:title" content="Freezetime Cast — трансляции турниров по CS2">
-<meta property="og:description" content="HUD, автокамера, повторы и статистика для эфира турнира. 14 дней бесплатно.">
+<meta property="og:description" content="HUD, автокамера, повторы и статистика для эфира турнира. 3 дня эфира бесплатно.">
 <meta property="og:image" content="img/hud-live.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,18 +32,18 @@
   --body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
   --gutter: clamp(16px, 4vw, 56px);
-  --max: 1240px;
+  --max: 1480px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 clamp(17px, 0.35vw + 12px, 19px)/1.6 var(--body); -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.05; margin: 0; letter-spacing: -.005em; }
 h2 { font-size: clamp(30px, 4.2vw, 52px); }
-h3 { font-size: 22px; font-weight: 600; }
+h3 { font-size: clamp(22px, 0.5vw + 16px, 26px); font-weight: 600; }
 p { margin: 0; }
 .muted { color: var(--muted); }
 
@@ -76,9 +76,9 @@ p { margin: 0; }
 .clock .phase { font: 600 clamp(8px, .75vw, 12px)/1.2 var(--display); letter-spacing: .12em; color: var(--teal); text-transform: uppercase; }
 .clock .time { font: 700 clamp(15px, 2vw, 30px)/1.1 var(--mono); font-variant-numeric: tabular-nums; }
 .clock.live .phase { color: var(--danger); }
-.hero-copy { position: absolute; z-index: 2; left: 4.5%; bottom: 9%; max-width: 560px; }
+.hero-copy { position: absolute; z-index: 2; left: 4.5%; bottom: 9%; max-width: 700px; }
 .hero-copy h1 { font-size: clamp(30px, 5.2vw, 72px); font-weight: 800; }
-.hero-copy p { margin-top: 18px; max-width: 46ch; font-size: clamp(15px, 1.35vw, 19px); color: #c9d1d5; }
+.hero-copy p { margin-top: 18px; max-width: 58ch; font-size: clamp(15px, 1.35vw, 19px); color: #c9d1d5; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 .hero-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
 @media (max-width: 860px) {
@@ -91,12 +91,12 @@ p { margin: 0; }
 
 /* ---------- Statement ---------- */
 .statement { padding: clamp(64px, 10vw, 130px) 0 clamp(40px, 6vw, 80px); }
-.statement p { font: 600 clamp(26px, 3.6vw, 46px)/1.18 var(--display); max-width: 22ch; }
+.statement p { font: 600 clamp(26px, 3.6vw, 46px)/1.18 var(--display); max-width: 30ch; }
 .statement p span { color: var(--muted); }
 
 /* ---------- What's on screen: the annotated HUD ---------- */
 .anno { padding-bottom: clamp(60px, 8vw, 110px); }
-.anno-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(24px, 3vw, 48px); align-items: start; margin-top: 36px; }
+.anno-grid { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: clamp(24px, 3vw, 48px); align-items: start; margin-top: 36px; }
 .shot { position: relative; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
 .pin { position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; display: grid; place-items: center; border-radius: 50%; background: var(--teal); color: #0c1a18; font: 700 14px/1 var(--mono); box-shadow: 0 0 0 4px rgba(79,216,196,.25); cursor: default; border: 0; }
 .pin.on { box-shadow: 0 0 0 7px rgba(79,216,196,.45); }
@@ -106,15 +106,15 @@ p { margin: 0; }
 .legend li::before { counter-increment: n; content: counter(n); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--teal); color: var(--teal); font: 700 13px/1 var(--mono); }
 .legend li.on::before { background: var(--teal); color: #0c1a18; }
 .legend b { display: block; font-family: var(--display); font-size: 19px; font-weight: 600; }
-.legend span { color: var(--muted); font-size: 15px; }
+.legend span { color: var(--muted); font-size: 16px; }
 @media (max-width: 980px) { .anno-grid { grid-template-columns: 1fr; } .pin { width: 22px; height: 22px; margin: -11px 0 0 -11px; font-size: 11px; } }
 
 /* ---------- What it does for you: one operator ---------- */
 .work { padding: clamp(60px, 8vw, 110px) 0; background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .work-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
-.work-head p { color: var(--muted); max-width: 48ch; }
-.jobs { margin-top: 48px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 0 56px; }
-.job { padding: 22px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 150px 1fr; gap: 20px; }
+.work-head p { color: var(--muted); max-width: 62ch; }
+.jobs { margin-top: 48px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 0 64px; }
+.job { padding: 24px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 140px 1fr; gap: 24px; }
 .job .who { font: 500 13px/1.4 var(--mono); color: var(--teal); padding-top: 4px; }
 .job .who s { color: var(--muted); text-decoration-color: var(--danger); }
 .job p { color: #c9d1d5; }
@@ -134,13 +134,13 @@ p { margin: 0; }
 .step .t { font: 700 14px/1 var(--mono); color: var(--teal); }
 .step:last-child .t { color: var(--danger); }
 .step h3 { margin: 10px 0 8px; }
-.step p { color: var(--muted); font-size: 15px; max-width: 28ch; }
+.step p { color: var(--muted); font-size: 16px; max-width: 36ch; }
 @media (max-width: 860px) { .line { grid-template-columns: 1fr; } .line::before { left: 7px; right: auto; width: 2px; top: 0; bottom: 0; height: auto; background: var(--teal); } .step { padding: 0 0 30px 40px; } .step::before { top: 2px; } }
 
 /* ---------- Plans: a table, not cards ---------- */
 .plans { padding: clamp(60px, 8vw, 110px) 0; border-top: 1px solid var(--line); }
 .plans-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; margin-top: 8px; }
-.plans-grid > div:first-child p { margin-top: 16px; color: var(--muted); max-width: 36ch; }
+.plans-grid > div:first-child p { margin-top: 16px; color: var(--muted); max-width: 44ch; }
 table { width: 100%; border-collapse: collapse; font-size: 16px; }
 th, td { text-align: left; padding: 18px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { font: 600 14px/1.3 var(--body); color: var(--muted); }
@@ -168,7 +168,7 @@ summary { cursor: pointer; font: 600 20px/1.3 var(--display); list-style: none; 
 summary::-webkit-details-marker { display: none; }
 summary::after { content: "+"; font: 500 22px/1 var(--mono); color: var(--teal); }
 details[open] summary::after { content: "−"; }
-details p { margin-top: 10px; color: #c9d1d5; max-width: 70ch; }
+details p { margin-top: 10px; color: #c9d1d5; max-width: 82ch; }
 .req { margin-top: 14px; width: 100%; font-size: 14px; }
 .req th, .req td { padding: 8px 10px 8px 0; vertical-align: top; }
 .req td:first-child { font: 500 14px/1.4 var(--body); color: var(--muted); white-space: nowrap; }
@@ -179,7 +179,7 @@ code { font: 500 .92em var(--mono); background: var(--panel-2); padding: 2px 6px
 /* ---------- Support ---------- */
 .support { padding: clamp(60px, 8vw, 110px) 0; }
 .support-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
-.support-grid p { margin-top: 16px; color: var(--muted); max-width: 52ch; }
+.support-grid p { margin-top: 16px; color: var(--muted); max-width: 64ch; }
 .contacts { list-style: none; margin: 0; padding: 0; }
 .contacts li { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
 .contacts li:last-child { border-bottom: 1px solid var(--line); }
@@ -224,7 +224,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: 
             <a class="btn btn-main js-download" href="https://github.com/romangoevribango/freezetime-cast-releases/releases/latest">Скачать для Windows</a>
             <a class="btn btn-ghost" href="https://t.me/freezetimecast">Написать в Telegram</a>
           </div>
-          <p class="hero-note"><span class="js-version"></span>14 дней без ограничений, карта не нужна</p>
+          <p class="hero-note"><span class="js-version"></span>3 дня эфира без ограничений, карта не нужна</p>
         </div>
       </div>
     </div>
@@ -303,7 +303,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: 
         <table>
           <thead><tr><th></th><th>Что входит</th><th>Цена</th></tr></thead>
           <tbody>
-            <tr class="trial"><td>Пробный</td><td>Все возможности на 14 дней. После — водяной знак на эфире, программа продолжает работать.</td><td class="price">0 ₽</td></tr>
+            <tr class="trial"><td>Пробный</td><td>Все возможности на 3 дня эфира. День засчитывается, только когда программа ведёт живой матч: установка и настройка дни не тратят. После — водяной знак на эфире, программа продолжает работать.</td><td class="price">0 ₽</td></tr>
             <tr><td>Клуб</td><td>Один компьютер, всё без ограничений: автокамера без лимита часов, повторы, статистика, сцены OBS. Свои цвета, расположение блоков и спонсор в редакторе. Обновления и поддержка в Telegram.</td><td class="price">2 490 ₽<small>в месяц</small></td></tr>
             <tr><td>Организатор</td><td>Всё из «Клуба» на трёх компьютерах. Поддержка в первую очередь, перед турниром удалённо проверим и настроим эфир вместе с вами.</td><td class="price">5 990 ₽<small>в месяц</small></td></tr>
             <tr class="addon"><td>HUD под бренд<em>к любой подписке</em></td><td>Своё оформление вашего клуба вместо стандартного. <span>15 000 ₽</span> — готовый HUD в ваших цветах и с логотипами. <span>до 40 000 ₽</span> — свой дизайн HUD, экрана перерыва и переходов. Две правки входят, оформление обновляется вместе с программой.</td><td class="price">15–40 тыс. ₽<small>разово</small></td></tr>
@@ -332,7 +332,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: 
             <p>Видеокарта нужна NVIDIA с кодировщиком NVENC (или Radeon RX 6000 и новее): тогда стрим кодирует видеокарта, а процессор остаётся игре. В OBS выберите кодировщик NVENC, в CS2 ограничьте FPS (<code>fps_max 144</code>) — так эфир не будет дёргаться.</p></details>
           <details><summary>Работает с моим сервером?</summary><p>Да. Программа подключается к любому серверу CS2 напрямую или к матчу через GOTV — свой сервер, арендованный или турнирная платформа.</p></details>
           <details><summary>Меня забанят за HLAE?</summary><p>Нет. HLAE запускает CS2 с параметром <code>-insecure</code>: VAC выключен, бана быть не может. Но с ним нельзя заходить на серверы с VAC — для эфира через GOTV это не мешает. Без HLAE программа тоже запустится, но останутся только HUD, статистика и сцены OBS. Автокамера, повторы и пролёты работают через HLAE: без него камерой управляет встроенный режиссёр CS2 или человек вручную.</p></details>
-          <details><summary>Что будет после 14 дней?</summary><p>Программа продолжит работать, но на эфире появится надпись «Пробная версия». Чтобы её убрать, нужен ключ: он привязывается к компьютеру и работает без интернета.</p></details>
+          <details><summary>Что будет после пробного периода?</summary><p>Пробный период — 3 дня эфира. День засчитывается после 10 минут живого матча, поэтому его хватит на репетицию и настоящий турнир, даже если турнир раз в неделю. Потом программа продолжит работать, но на эфире появится надпись «Пробная версия». Чтобы её убрать, нужен ключ: он привязывается к компьютеру и работает без интернета.</p></details>
           <details><summary>Антивирус ругается на программу</summary><p>Windows может предупредить «неизвестный издатель» при установке — нажмите «Подробнее» → «Выполнить в любом случае». HLAE подключается к игре, поэтому некоторые антивирусы его проверяют дольше обычного. Если что-то блокируется — напишите в поддержку.</p></details>
           <details><summary>Как вернуть CS2 в обычный режим?</summary><p>Закройте игру, запущенную программой, запустите CS2 из Steam и введите в консоли <code>exec broadcast_off</code>. Все настройки и клавиши вернутся к стандартным.</p></details>
           <details><summary>Как обновлять?</summary><p>Никак — программа обновляется сама. Новая версия скачивается в фоне и ставится, когда вы закрываете программу. Посреди эфира ничего не перезапустится.</p></details>
