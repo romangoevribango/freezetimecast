@@ -147,7 +147,7 @@ th { font: 600 14px/1.3 var(--body); color: var(--muted); }
 td:first-child { font: 600 20px/1.2 var(--display); white-space: nowrap; padding-left: 0; }
 td.price { font: 700 16px/1.3 var(--mono); white-space: nowrap; }
 tr.trial td:first-child, tr.trial td.price { color: var(--teal); }
-@media (max-width: 860px) { .plans-grid { grid-template-columns: 1fr; } th:nth-child(2), td:nth-child(2) { display: none; } }
+@media (max-width: 860px) { .plans-grid { grid-template-columns: 1fr; } .plans th:nth-child(2), .plans td:nth-child(2) { display: none; } .req td, .req th { padding-right: 8px; } }
 
 /* ---------- Questions ---------- */
 .faq { padding: clamp(60px, 8vw, 110px) 0; background: var(--panel); border-top: 1px solid var(--line); }
@@ -159,6 +159,10 @@ summary::-webkit-details-marker { display: none; }
 summary::after { content: "+"; font: 500 22px/1 var(--mono); color: var(--teal); }
 details[open] summary::after { content: "−"; }
 details p { margin-top: 10px; color: #c9d1d5; max-width: 70ch; }
+.req { margin-top: 14px; width: 100%; font-size: 14px; }
+.req th, .req td { padding: 8px 10px 8px 0; vertical-align: top; }
+.req td:first-child { font: 500 14px/1.4 var(--body); color: var(--muted); white-space: nowrap; }
+.price small { display: block; font: 400 12px/1.4 var(--body, inherit); color: var(--muted); }
 code { font: 500 .92em var(--mono); background: var(--panel-2); padding: 2px 6px; border-radius: 4px; }
 @media (max-width: 860px) { .faq-grid { grid-template-columns: 1fr; gap: 20px; } }
 
@@ -283,15 +287,15 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: 
       <div class="plans-grid">
         <div>
           <h2>Тарифы</h2>
-          <p>Цена зависит от того, сколько у вас турниров и нужен ли HUD в стиле клуба. Напишите — подберём и посчитаем.</p>
+          <p>Подписка помесячно, отменить можно в любой момент. Программа только выходит, поэтому первые клубы получают особые условия — напишите.</p>
         </div>
         <table>
           <thead><tr><th></th><th>Что входит</th><th>Цена</th></tr></thead>
           <tbody>
             <tr class="trial"><td>Пробный</td><td>Все возможности на 14 дней. После — водяной знак на эфире, программа продолжает работать.</td><td class="price">0 ₽</td></tr>
-            <tr><td>Клуб</td><td>Один компьютер для трансляций, все обновления, поддержка в Telegram.</td><td class="price">по запросу</td></tr>
-            <tr><td>Организатор</td><td>Несколько компьютеров или клубов, помощь на турнире.</td><td class="price">по запросу</td></tr>
-            <tr><td>HUD под бренд</td><td>HUD, перерыв и переходы в цветах и логотипах вашего клуба.</td><td class="price">разово</td></tr>
+            <tr><td>Клуб</td><td>Один компьютер для трансляций, все обновления, поддержка в Telegram.</td><td class="price">от 2 000 ₽<small>в месяц</small></td></tr>
+            <tr><td>Организатор</td><td>Несколько компьютеров или клубов, помощь на турнире.</td><td class="price">от 5 000 ₽<small>в месяц</small></td></tr>
+            <tr><td>HUD под бренд</td><td>HUD, перерыв и переходы в цветах и логотипах вашего клуба.</td><td class="price">от 15 000 ₽<small>разово</small></td></tr>
           </tbody>
         </table>
       </div>
@@ -303,9 +307,20 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: 
       <div class="faq-grid">
         <h2>Вопросы</h2>
         <div>
-          <details><summary>Что нужно для работы?</summary><p>Windows 10 или 11, CS2 и OBS Studio на компьютере трансляции. Для спецэффектов камеры (пролёты, своя камера) программа сама поставит HLAE. Видеокарта — такая, чтобы тянуть CS2 и стрим одновременно.</p></details>
+          <details><summary>Что нужно для работы?</summary><p>Windows 10 или 11, CS2 и OBS Studio на компьютере трансляции. HLAE программа поставит сама: через него работают автокамера, повторы и пролёты. Игра и стрим идут на одном компьютере, поэтому требования выше, чем просто для CS2:</p>
+            <table class="req">
+              <thead><tr><th></th><th>Минимум · 720p 60 к/с</th><th>Для 1080p 60 к/с</th></tr></thead>
+              <tbody>
+                <tr><td>Процессор</td><td>4 ядра, 8 потоков: Core i5-9400F, Ryzen 5 2600</td><td>6 ядер, 12 потоков: Core i5-12400F, Ryzen 5 5600</td></tr>
+                <tr><td>Видеокарта</td><td>GTX 1650 Super, 4 ГБ</td><td>RTX 2060 / 3050 и новее, 6 ГБ+</td></tr>
+                <tr><td>Память</td><td>16 ГБ</td><td>16 ГБ в двух планках</td></tr>
+                <tr><td>Диск</td><td>SSD, 60 ГБ свободно</td><td>SSD, 100 ГБ свободно (CS2 и записи)</td></tr>
+                <tr><td>Интернет</td><td>отдача от 6 Мбит/с</td><td>отдача от 10 Мбит/с, по кабелю</td></tr>
+              </tbody>
+            </table>
+            <p>Видеокарта нужна NVIDIA с кодировщиком NVENC (или Radeon RX 6000 и новее): тогда стрим кодирует видеокарта, а процессор остаётся игре. В OBS выберите кодировщик NVENC, в CS2 ограничьте FPS (<code>fps_max 144</code>) — так эфир не будет дёргаться.</p></details>
           <details><summary>Работает с моим сервером?</summary><p>Да. Программа подключается к любому серверу CS2 напрямую или к матчу через GOTV — свой сервер, арендованный или турнирная платформа.</p></details>
-          <details><summary>Меня забанят за HLAE?</summary><p>Нет. HLAE запускает CS2 с параметром <code>-insecure</code>: VAC выключен, бана быть не может. Но с ним нельзя заходить на серверы с VAC — для эфира через GOTV это не мешает. Без HLAE программа тоже работает, только без пролётов камеры.</p></details>
+          <details><summary>Меня забанят за HLAE?</summary><p>Нет. HLAE запускает CS2 с параметром <code>-insecure</code>: VAC выключен, бана быть не может. Но с ним нельзя заходить на серверы с VAC — для эфира через GOTV это не мешает. Без HLAE программа тоже запустится, но останутся только HUD, статистика и сцены OBS. Автокамера, повторы и пролёты работают через HLAE: без него камерой управляет встроенный режиссёр CS2 или человек вручную.</p></details>
           <details><summary>Что будет после 14 дней?</summary><p>Программа продолжит работать, но на эфире появится надпись «Пробная версия». Чтобы её убрать, нужен ключ: он привязывается к компьютеру и работает без интернета.</p></details>
           <details><summary>Антивирус ругается на программу</summary><p>Windows может предупредить «неизвестный издатель» при установке — нажмите «Подробнее» → «Выполнить в любом случае». HLAE подключается к игре, поэтому некоторые антивирусы его проверяют дольше обычного. Если что-то блокируется — напишите в поддержку.</p></details>
           <details><summary>Как вернуть CS2 в обычный режим?</summary><p>Закройте игру, запущенную программой, запустите CS2 из Steam и введите в консоли <code>exec broadcast_off</code>. Все настройки и клавиши вернутся к стандартным.</p></details>
