@@ -184,8 +184,11 @@ details li { margin-top: 4px; }
 .tier-meta span + span { color: var(--muted); }
 .tier p { margin-top: 8px; font-size: 15px; }
 .steps { counter-reset: st; list-style: none; margin: 4px 0 0; padding: 0; color: #c9d1d5; max-width: 82ch; }
-.steps li { counter-increment: st; display: grid; grid-template-columns: 30px 1fr; align-items: start; margin-top: 8px; }
-.steps li::before { content: counter(st); font: 600 13px/22px var(--mono); color: var(--bg); background: var(--teal); width: 22px; height: 22px; text-align: center; }
+.steps li { counter-increment: st; position: relative; display: grid; grid-template-columns: 40px 1fr; align-items: center; min-height: 34px; margin-top: 10px; }
+.steps li:nth-child(1) { --n: 1; } .steps li:nth-child(2) { --n: 2; } .steps li:nth-child(3) { --n: 3; } .steps li:nth-child(4) { --n: 4; } .steps li:nth-child(5) { --n: 5; }
+/* the Freezetime stopwatch: the dial fills a fifth more with every step */
+.steps li::before { content: counter(st); box-sizing: border-box; width: 28px; height: 28px; margin-top: 4px; border-radius: 50%; border: 3px solid #dfe8e6; background: conic-gradient(var(--teal) 0 calc(var(--n) * 72deg), #0f1416 0); font: 700 12px/22px var(--mono); color: #fff; text-align: center; text-shadow: 0 0 3px #0f1416, 0 0 2px #0f1416, 0 0 1px #0f1416; }
+.steps li::after { content: ""; position: absolute; left: 10px; top: 50%; width: 8px; height: 5px; margin-top: -16px; border-radius: 1px; background: #dfe8e6; }
 @media (max-width: 700px) { .tiers { grid-template-columns: 1fr; } }
 .req { margin-top: 14px; width: 100%; font-size: 14px; }
 .req th, .req td { padding: 8px 10px 8px 0; vertical-align: top; }
